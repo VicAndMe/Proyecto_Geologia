@@ -1,0 +1,41 @@
+@startuml Diagrama_Paquetes_01
+
+skinparam folder {
+    backgroundColor F8DE7E
+    borderColor black
+}
+
+
+folder "Capa de Presentación" as C1{
+    folder "SolicitudIH" as P1
+    folder "VehículosIH" as P2
+    folder "SalidasIH" as P3
+    folder "UsuariosIH" as PEP1
+}
+folder "Capa Lógica" as C2{
+    folder "Solicitud" as P4
+    folder "Vehículos" as P5
+    folder "Salidas" as P6 
+    folder "Usuarios" as PEL1
+    folder "Consultar" as P7
+}
+folder "Capa de Almacenamiento" as C3 {
+    folder "Base de Datos" as B1
+    folder "Solicitud de Salida\n Validada" as B2
+}
+
+
+C1====C2
+C2===C3
+
+
+P1 .right.> P2
+P1 .left.> P3
+P7 .up.>P4
+P4 .right.>P6
+P4 .left.>P5
+P7 .up.>P5
+P7 .up.>P6
+P7 .up.>PEL1
+B2 .down.> B1
+@enduml

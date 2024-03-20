@@ -1,0 +1,28 @@
+@startuml CU_PG_SolicitudSalida
+
+/'diagrama de caso de uso para utilizacion de solicitud de salida'/
+left to right direction
+actor "Maestro" as M1
+actor "Administrador" as A1
+actor "Sistema" as S1
+rectangle "Solicitud de Salida" {
+    usecase "Generar Solicitud" as US1
+    usecase "Consultar Registro\n de Solicitud" as US2
+    usecase "Validar Solicitud"  as US3
+    usecase "Modificar Solicitud" as US4
+    usecase "Generar PDF\n de la Solicitud" as US5
+    usecase "Almacena Solicitudes \n Validadas" as US6
+}
+M1-->US1
+M1-->US2
+M1<--US4 : Aviso de Modificacion \n de solicitud
+A1-->US3
+A1-->US2
+A1-->US4
+A1-->US5
+US1 .> US3 : include
+US3 ..> US6 : include
+US6<-- S1
+
+
+@enduml

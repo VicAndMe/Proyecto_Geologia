@@ -1,0 +1,43 @@
+@startuml DS_CasodeUso1
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 20
+skinparam maxmessagesize 60
+skinparam sequenceParticipant underline
+
+actor "Maestro" as ad1
+actor "Administrador" as ad2
+participant ":SolicitudIH" as A
+participant ":Solicitud" as B
+participant ":Bases de Datos" as C
+participant ":SalidaIH" as D
+participant ":Salida" as E
+ad1 -> A: 1:Abrir()
+activate A
+
+A -> B: 2:Proporcionardatos()
+activate B
+
+B -> C: 3:CrearSolicictud()
+activate C
+C -> B: 4:ConfirmarRegistro()
+deactivate C
+
+B -> A: 5:ConfirmarSolicitud()
+deactivate B
+
+A -> ad1: 6:MostrarConfirmacion()
+A -> D: 7:AvisoSolicitud()
+deactivate A
+activate D
+D -> E: 8:CrearAviso():
+activate E
+
+E -> D: 9:ConfirmarAviso()
+deactivate E
+
+D-> ad2: 10:EnviarAviso()
+deactivate D
+
+
+
+@enduml
